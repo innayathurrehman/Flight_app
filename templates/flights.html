@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Available Flights</h2>
+<div class="grid">
+  {% for f in flights %}
+    <article class="card">
+      <h3>{{ f.flight_number }}</h3>
+      <p><strong>Route:</strong> {{ f.origin }} → {{ f.destination }}</p>
+      <p><strong>Seats:</strong> {{ f.available_seats }}/{{ f.seat_capacity }} available</p>
+
+      {% if f.bookings %}
+        <details>
+          <summary>Current Bookings</summary>
+          <ul class="list">
+            {% for seat, name in f.bookings.items() %}
+              <li>Seat {{ seat }} — {{ name }}</li>
+            {% endfor %}
+          </ul>
+        </details>
+      {% endif %}
+
+      <div class="actions">
+        <a class="btn" href="/flights/{{ f.flight_number }}/book">Book a Seat</a>
+        <form method="post" action="/flights/{{ f.flight_number }}/cancel" class="inline-form">
+          <input name="seat_number" placeholder="Seat #" required>
+          <button class="btn btn-outline" type="submit">Cancel Seat</button>
+        </form>
+      </div>
+    </article>
+  {% else %}
+    <p>No flights yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

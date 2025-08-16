@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Book Seat — {{ flight.flight_number }}</h2>
+<p><strong>Route:</strong> {{ flight.origin }} → {{ flight.destination }}</p>
+<form method="post" class="card form">
+  {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+  <label>Passenger Name <input name="passenger_name" required></label>
+  <label>Seat Number
+    <input name="seat_number" list="seats" placeholder="Choose seat" required>
+    <datalist id="seats">
+      {% for s in available_seats %}
+        <option value="{{ s }}"></option>
+      {% endfor %}
+    </datalist>
+  </label>
+  <button class="btn" type="submit">Confirm Booking</button>
+</form>
+{% endblock %}

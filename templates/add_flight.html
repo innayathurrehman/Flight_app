@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add New Flight</h2>
+<form method="post" class="card form">
+  {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+  <label>Flight Number <input name="flight_number" placeholder="e.g., AI101" required></label>
+  <label>Origin <input name="origin" placeholder="City" required></label>
+  <label>Destination <input name="destination" placeholder="City" required></label>
+  <label>Seat Capacity <input type="number" name="seat_capacity" min="1" required></label>
+  <button class="btn" type="submit">Add Flight</button>
+</form>
+{% endblock %}

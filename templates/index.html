@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h2>Book your next flight, quickly.</h2>
+  <p>Browse flights, reserve seats, and manage bookings with a simple interface.</p>
+  <div class="actions">
+    <a class="btn" href="/flights">View Flights</a>
+    {% if not user %}
+      <a class="btn btn-outline" href="/register">Create Account</a>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

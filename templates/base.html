@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Flight Booking</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="/static/styles.css" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container row">
+      <h1 class="brand"><a href="/">✈️ Flight Booking</a></h1>
+      <nav>
+        <a href="/flights">Flights</a>
+        {% if user %}
+          <a href="/flights/add">Add Flight</a>
+          <a class="btn btn-outline" href="/logout">Logout ({{ user }})</a>
+        {% else %}
+          <a href="/login">Login</a>
+          <a class="btn" href="/register">Register</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>Made with FastAPI • Pure HTML + CSS</small>
+    </div>
+  </footer>
+</body>
+</html>
